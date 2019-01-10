@@ -1,0 +1,8 @@
+include ':cat-facts-core',
+        ':cat-facts-api-server',
+        ':cat-facts-api-client', 
+        ':cat-facts-persistence-inmemory',
+        ':cat-facts-persistence-postgresql',
+        ':cat-facts-app-cli',
+        ':cat-facts-app-reactjs',
+        ':cat-facts-app-android'

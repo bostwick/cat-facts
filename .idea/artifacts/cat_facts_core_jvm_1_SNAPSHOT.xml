@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="cat-facts-core-jvm-1-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/cat-facts-core/build/libs</output-path>
+    <root id="archive" name="cat-facts-core-jvm-1-SNAPSHOT.jar" />
+  </artifact>
+</component>

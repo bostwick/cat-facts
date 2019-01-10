@@ -1,0 +1,41 @@
+apply plugin: 'kotlin-multiplatform'
+
+kotlin {
+    targets {
+//        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos")   \
+//                                ? presets.iosArm64 : presets.iosX64
+//        fromPreset(iOSTarget, 'iOS') {
+//            compilations.main.outputKinds('FRAMEWORK')
+//        }
+
+        fromPreset(presets.jvm, 'jvm')
+
+//        fromPreset(presets.js, 'js')
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                api dep.kotlin_stdlib_common
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation dep.kotlin_test_common
+                implementation dep.kotlin_test_annotations_common
+            }
+        }
+
+        jvmMain {
+            dependencies {
+                api dep.kotlin_stdlib
+            }
+        }
+        jvmTest {
+            dependencies {
+                implementation dep.kotlin_test
+                implementation dep.kotlin_test_junit
+            }
+        }
+    }
+}

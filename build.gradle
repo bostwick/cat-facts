@@ -1,0 +1,52 @@
+buildscript {
+    ext.kotlin_version = '1.3.10'
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+ext {
+    app = [
+            group_id    : "com.danielbostwick.catfacts",
+            version_code: "1",
+            version_name: "1-SNAPSHOT"
+    ]
+
+    dep = [
+            junit                         : "junit:junit:4.12",
+
+            kotlin_stdlib                 : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            kotlin_stdlib_common          : "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version",
+            kotlin_stdlib_js              : "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version",
+            kotlin_stdlib_jdk             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            kotlin_reflect                : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
+
+            kotlin_test_common            : "org.jetbrains.kotlin:kotlin-test-common:$kotlin_version",
+            kotlin_test_annotations_common: "org.jetbrains.kotlin:kotlin-test-annotations-common:$kotlin_version",
+            kotlin_test                   : "org.jetbrains.kotlin:kotlin-test:$kotlin_version",
+            kotlin_test_js                : "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version",
+            kotlin_test_junit             : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
+    ]
+}
+
+allprojects {
+    group app.group_id
+    version app.version_name
+
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

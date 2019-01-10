@@ -1,0 +1,8 @@
+##
+# Climb Higher API Server - development configuration
+#
+
+logging:
+#  level: DEBUG
+#  appenders:
+#    - type: console
