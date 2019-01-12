@@ -1,8 +1,61 @@
 apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'application'
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+mainClassName = "com.danielbostwick.catfacts.api.server.MainKt"
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.6"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.6"
+    }
 }
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin/'
+    test.java.srcDirs += 'src/test/kotlin/'
+}
+
+jar {
+    manifest {
+        attributes "Implementation-Title": "Cat Facts Api Server"
+        attributes "Implementation-Version": app.version_name
+        attributes 'Main-Class': mainClassName
+    }
+
+    exclude 'META-INF/MANIFEST.MF'
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+run {
+    args 'server', '../config/cat-facts-dev.yml'
+}
+
+dependencies {
+    implementation project(':cat-facts-core')
+    implementation project(':cat-facts-persistence-inmemory')
+    implementation project(':cat-facts-persistence-postgresql')
+
+    implementation dep.kotlin_stdlib_jdk
+    implementation dep.kotlin_reflect
+
+    implementation dep.rx_java
+
+    implementation dep.dropwizard_core
+    implementation dep.dropwizard_jdbi
+
+    implementation dep.jackson_module_kotlin
+}

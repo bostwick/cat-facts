@@ -1,4 +1,6 @@
 package com.danielbostwick.catfacts.api.server.resource
 
-class CatFactsAccountResource {
+import com.danielbostwick.catfacts.core.persistence.CatFactAccountRepository
+
+class CatFactsAccountResource(private val accountRepository: CatFactAccountRepository) {
 }
