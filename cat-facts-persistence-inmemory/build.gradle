@@ -1,8 +1,28 @@
 apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.6"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.6"
+    }
 }
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin/'
+    test.java.srcDirs += 'src/test/kotlin/'
+}
+
+dependencies {
+    implementation project(":cat-facts-core")
+
+    implementation dep.kotlin_stdlib_jdk
+    implementation dep.kotlin_reflect
+}
