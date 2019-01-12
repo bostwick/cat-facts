@@ -21,7 +21,7 @@ import retrofit2.http.Path
 interface CatFactsApi {
 
     companion object {
-        
+
         const val API_ROOT_ANDROID_EMULATOR_LOCALHOST = ""
 
         const val API_ROOT_LOCALHOST = "http://127.0.0.1:8080/"
@@ -50,12 +50,12 @@ interface CatFactsApi {
                 .build()
     }
 
-    @GET("account/:id")
+    @GET("account/{id}")
     fun fetchAccount(@Path("id") accountId: UUID): Single<CatFactAccount>
 
     @GET("catfacts")
     fun fetchAllCatFacts(): Single<List<CatFact>>
 
-    @GET("catfact/:id")
+    @GET("catfact/{id}")
     fun fetchCatfact(@Path("id") catfactId: UUID): Single<CatFact>
 }

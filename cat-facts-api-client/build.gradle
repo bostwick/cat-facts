@@ -22,7 +22,7 @@ sourceSets {
 
 jar {
     manifest {
-        attributes "Implementation-Title": "ClimbHigher Db Manager"
+        attributes "Implementation-Title": "Cat Facts API Client"
         attributes "Implementation-Version": app.version_name
     }
 
