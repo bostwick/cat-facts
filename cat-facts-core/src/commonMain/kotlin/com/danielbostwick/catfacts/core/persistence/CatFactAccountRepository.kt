@@ -1,5 +1,6 @@
-package com.danielbostwick.catfacts.core
+package com.danielbostwick.catfacts.core.persistence
 
+import com.danielbostwick.catfacts.core.model.CatFactAccount
 import com.danielbostwick.catfacts.core.type.UUID
 
 interface CatFactAccountRepository {

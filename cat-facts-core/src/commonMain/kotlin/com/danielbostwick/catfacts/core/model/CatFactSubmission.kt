@@ -1,4 +1,4 @@
-package com.danielbostwick.catfacts.core
+package com.danielbostwick.catfacts.core.model
 
 import com.danielbostwick.catfacts.core.type.Date
 import com.danielbostwick.catfacts.core.type.UUID

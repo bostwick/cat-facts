@@ -1,5 +1,7 @@
 package com.danielbostwick.catfacts.core
 
+import com.danielbostwick.catfacts.core.model.CatFact
+import com.danielbostwick.catfacts.core.model.CatFactAccount
 import com.danielbostwick.catfacts.core.type.createDateNow
 import com.danielbostwick.catfacts.core.type.createUuidFromString
 
@@ -8,7 +10,10 @@ object Fixtures {
     private val SYSTEM_ACCOUNT_ID = createUuidFromString("00000000-0000-0000-0000-000000000000")
 
     val ACCOUNTS = listOf(
-        CatFactAccount(id = SYSTEM_ACCOUNT_ID, name = "Cat Facts", createdAt = createDateNow())
+        CatFactAccount(
+            id = SYSTEM_ACCOUNT_ID,
+            name = "Cat Facts",
+            createdAt = createDateNow())
     )
 
     val CAT_FACTS = listOf(
