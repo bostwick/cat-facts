@@ -9,7 +9,7 @@ import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
-@Path("/catfact")
+@Path("/catfact/{id}")
 @Produces(MediaType.APPLICATION_JSON)
 class CatFactResource(private val catFactRepository: CatFactRepository) {
 

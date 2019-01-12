@@ -1,5 +1,5 @@
 package com.danielbostwick.catfacts.core.type
 
-actual class Date
+actual typealias Date = java.util.Date
 
-actual fun createDateNow(): Date = Date()
+actual fun createDateNow(): Date = java.util.Date()

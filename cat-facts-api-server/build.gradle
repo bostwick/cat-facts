@@ -2,7 +2,7 @@ apply plugin: 'java-library'
 apply plugin: 'kotlin'
 apply plugin: 'application'
 
-mainClassName = "com.danielbostwick.catfacts.api.server.MainKt"
+mainClassName = "com.danielbostwick.catfacts.api.server.CatFactsApiServer"
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"

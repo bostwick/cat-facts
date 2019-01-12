@@ -1,5 +1,6 @@
 package com.danielbostwick.catfacts.persistence.inmemory
 
+import com.danielbostwick.catfacts.core.Fixtures
 import com.danielbostwick.catfacts.core.model.CatFact
 import com.danielbostwick.catfacts.core.persistence.CatFactRepository
 import com.danielbostwick.catfacts.core.type.UUID
@@ -19,5 +20,9 @@ class InMemoryCatFactRepository : CatFactRepository {
 
     override fun remove(factId: UUID) {
         Data.facts.removeIf { it.id == factId }
+    }
+
+    fun loadFixtures() {
+        Fixtures.CAT_FACTS.forEach { add(it) }
     }
 }
