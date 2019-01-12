@@ -12,7 +12,6 @@
             <option value="$PROJECT_DIR$/cat-facts-api-server" />
             <option value="$PROJECT_DIR$/cat-facts-app-android" />
             <option value="$PROJECT_DIR$/cat-facts-app-cli" />
-            <option value="$PROJECT_DIR$/cat-facts-app-reactjs" />
             <option value="$PROJECT_DIR$/cat-facts-core" />
             <option value="$PROJECT_DIR$/cat-facts-persistence-inmemory" />
             <option value="$PROJECT_DIR$/cat-facts-persistence-postgresql" />
