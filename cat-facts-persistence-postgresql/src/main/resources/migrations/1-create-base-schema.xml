@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet author="Daniel Bostwick" id="1-create-accounts">
+        <comment>Creates the Accounts table</comment>
+
+        <createTable schemaName="catfacts" tableName="cat_fact_accounts">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="created_at" defaultValueDate="CURRENT_TIMESTAMP" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable schemaName="catfacts" tableName="cat_facts">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="content" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" defaultValueDate="CURRENT_TIMESTAMP" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="cat_facts"
+                                 baseColumnNames="author_id"
+                                 constraintName="fk_cat_fact_author"
+                                 referencedTableName="cat_fact_accounts"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

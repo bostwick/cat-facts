@@ -1,8 +1,18 @@
 ##
-# Climb Higher API Server - development configuration
+# Cat Facts API Server - development configuration
 #
 
 logging:
-#  level: DEBUG
-#  appenders:
-#    - type: console
+  level: DEBUG
+  appenders:
+    - type: console
+
+datasource: postgresql
+load_fixtures: true
+
+# Database Configuration
+database:
+  driverClass: org.postgresql.Driver
+  url: jdbc:postgresql://localhost/catfacts_dev
+  user: catfacts
+  password: catfacts
