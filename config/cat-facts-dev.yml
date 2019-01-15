@@ -8,7 +8,7 @@ logging:
     - type: console
 
 datasource: postgresql
-load_fixtures: true
+load_fixtures: false
 
 # Database Configuration
 database:

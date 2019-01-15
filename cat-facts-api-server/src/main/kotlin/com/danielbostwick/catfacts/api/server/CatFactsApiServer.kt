@@ -19,6 +19,7 @@ import io.dropwizard.Application
 import io.dropwizard.jdbi.DBIFactory
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
+import org.slf4j.LoggerFactory
 
 @Suppress("unused")
 class CatFactsApiServer : Application<CatFactsApiServerConfig>() {
@@ -30,6 +31,7 @@ class CatFactsApiServer : Application<CatFactsApiServerConfig>() {
         }
     }
 
+    private val logger = LoggerFactory.getLogger(CatFactsApiServer::class.java)
     private lateinit var catfactRepository: CatFactRepository
     private lateinit var accountRepository: CatFactAccountRepository
 
@@ -61,6 +63,8 @@ class CatFactsApiServer : Application<CatFactsApiServerConfig>() {
     private fun initializeRepositories(configuration: CatFactsApiServerConfig, environment: Environment): Unit =
         when (configuration.dataSource) {
             DATASOURCE_IN_MEMORY -> {
+                logger.info("initializeRepositories() - datasource is inmemory")
+
                 accountRepository = InMemoryCatFactAccountRepository()
                 catfactRepository = InMemoryCatFactRepository()
 
@@ -71,6 +75,8 @@ class CatFactsApiServer : Application<CatFactsApiServerConfig>() {
             }
 
             DATASOURCE_DATABASE_PSQL -> {
+                logger.info("initializeRepositories() - datasource is postgresql")
+
                 val dbiFactory = DBIFactory()
                 val jdbi = dbiFactory.build(environment, configuration.database, configuration.dataSource)
                 val jdbiModule = CatFactDbModule(jdbi)
