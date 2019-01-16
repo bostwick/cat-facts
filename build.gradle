@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0'
+        classpath 'com.android.tools.build:gradle:3.4.0-alpha10'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.3'
 
@@ -37,12 +37,14 @@ ext {
             kotlin_test_junit             : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
 
             rx_java                       : "io.reactivex.rxjava2:rxjava:2.1.5",
+            rx_java_rxandroid             : "io.reactivex.rxjava2:rxandroid:2.1.0",
 
             retrofit                      : "com.squareup.retrofit2:retrofit:2.3.0",
             retrofit_converter_jackson    : "com.squareup.retrofit2:converter-jackson:2.3.0",
             retrofit_adapter_rxjava       : "com.squareup.retrofit2:adapter-rxjava2:2.3.0",
 
             okhttp                        : "com.squareup.okhttp3:okhttp:3.9.1",
+            okhttp_logging_interceptor    : "com.squareup.okhttp3:logging-interceptor:3.9.1",
 
             jackson_databind              : "com.fasterxml.jackson.core:jackson-databind:2.9.0",
             jackson_module_kotlin         : "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0",
@@ -52,7 +54,13 @@ ext {
             dropwizard_logging            : "io.dropwizard:dropwizard-logging:1.2.0",
             dropwizard_migrations         : "io.dropwizard:dropwizard-migrations:1.2.0",
 
-            postgresql                    : "org.postgresql:postgresql:42.1.4"
+            postgresql                    : "org.postgresql:postgresql:42.1.4",
+
+            androidx_appcompat            : "androidx.appcompat:appcompat:1.0.2",
+            androidx_lifecycle            : "androidx.lifecycle:lifecycle-extensions:2.0.0",
+            androidx_lifecycle_compiler   : "androidx.lifecycle:lifecycle-compiler:2.0.0",
+            androidx_constraintlayout     : "androidx.constraintlayout:constraintlayout:2.0.0-alpha3",
+            androidx_recyclerview         : "androidx.recyclerview:recyclerview:1.0.0"
     ]
 }
 

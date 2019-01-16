@@ -15,6 +15,6 @@ object CatFactAccountQueries {
             ") RETURNING *"
 
     const val FIND_BY_ID =
-        "SELECT * FROM ${CatFactAccountsSchema.TABLE_NAME}" +
+        "SELECT * FROM ${CatFactAccountsSchema.TABLE_NAME} " +
             "WHERE ${CatFactAccountsSchema.COLUMN_ID} = :${CatFactAccountsSchema.QUERY_PARAM_ID}"
 }

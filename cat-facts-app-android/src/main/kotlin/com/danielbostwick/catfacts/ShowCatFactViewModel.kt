@@ -10,33 +10,44 @@ import com.danielbostwick.catfacts.core.model.CatFact
 import com.danielbostwick.catfacts.core.model.CatFactAccount
 import com.danielbostwick.catfacts.core.type.UUID
 import com.danielbostwick.catfacts.util.SingleLiveEvent
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class CatFactShowViewModel : ViewModel() {
 
-    private val catFactsApi: CatFactsApi = CatFactsApp.instance.catFactsApi
+    companion object {
+        const val TAG = "CatFactShowViewModel"
+    }
 
-    private val mutableCatFact: MutableLiveData<CatFact> = MutableLiveData()
-    private val mutableCatFactAuthor: MutableLiveData<CatFactAccount> = MutableLiveData()
-    private val mutableNavigateBack: SingleLiveEvent<Any> = SingleLiveEvent()
+    private val catFactsApi: CatFactsApi = CatFactsApp.instance.services.catFactsApi
+
+    private val _catFact: MutableLiveData<CatFact> = MutableLiveData()
+    private val _catFactAuthor: MutableLiveData<CatFactAccount> = MutableLiveData()
+    private val _navigateBack: SingleLiveEvent<Any> = SingleLiveEvent()
 
     val catFact: LiveData<CatFact>
-        get() = mutableCatFact
+        get() = _catFact
     val catFactAuthor: LiveData<CatFactAccount>
-        get() = mutableCatFactAuthor
+        get() = _catFactAuthor
     val navigateBackEvents: LiveData<Any>
-        get() = mutableNavigateBack
+        get() = _navigateBack
 
     @SuppressLint("CheckResult")
     fun fetchCatFact(catFactId: UUID) {
         catFactsApi.fetchCatfact(catFactId)
-            .subscribe(mutableCatFact::postValue, ::logError)
+            .doOnSuccess(_catFact::postValue)
+            .flatMap { catFactsApi.fetchAccount(it.authorId) }
+            .doOnSuccess(_catFactAuthor::postValue)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({}, ::logError)
     }
 
     fun onNavigationBackClicked() {
-        mutableNavigateBack.call()
+        _navigateBack.call()
     }
 
     private fun logError(t: Throwable) {
-        Log.e(CatFactsListViewModel.TAG, Log.getStackTraceString(t))
+        Log.e(TAG, Log.getStackTraceString(t))
     }
 }

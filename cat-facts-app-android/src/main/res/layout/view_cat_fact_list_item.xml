@@ -1,4 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="catFact"
+            type="com.danielbostwick.catfacts.core.model.CatFact" />
+
+        <variable
+            name="author"
+            type="com.danielbostwick.catfacts.core.model.CatFactAccount" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="0dp">
+
+        <TextView
+            android:id="@+id/cat_fact_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{catFact.content}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Cat Fact Content Goes Here" />
+
+        <TextView
+            android:id="@+id/cat_fact_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{author.name}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:visibility="@{author != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cat_fact_content"
+            tools:text="Garfield The Cat" />
+
+        <TextView
+            android:id="@+id/dot_separator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  ·  "
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:visibility="@{author != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toRightOf="@id/cat_fact_author_name"
+            app:layout_constraintTop_toBottomOf="@id/cat_fact_content" />
+
+        <TextView
+            android:id="@+id/cat_fact_created_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{catFact.createdAt.toString()}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintLeft_toRightOf="@id/dot_separator"
+            app:layout_constraintTop_toBottomOf="@id/cat_fact_content"
+            tools:text="January 17, 2019" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@id/cat_fact_created_date" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

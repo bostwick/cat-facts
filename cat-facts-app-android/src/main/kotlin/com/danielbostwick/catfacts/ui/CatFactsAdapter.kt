@@ -1,15 +1,14 @@
-package com.danielbostwick.catfacts
+package com.danielbostwick.catfacts.ui
 
-import android.content.Context
-import android.util.AttributeSet
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.danielbostwick.catfacts.core.CatFact
+import com.danielbostwick.catfacts.core.model.CatFact
 
-class CatFactsAdapter(context: Context) : RecyclerView.Adapter<CatFactListItemViewHolder>() {
+class CatFactsAdapter : RecyclerView.Adapter<CatFactListItemViewHolder>() {
 
     private val data: MutableList<CatFact> = mutableListOf()
+
+    var onItemClickedListener: ((CatFact) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatFactListItemViewHolder =
         CatFactListItemViewHolder(parent.context)
@@ -17,12 +16,16 @@ class CatFactsAdapter(context: Context) : RecyclerView.Adapter<CatFactListItemVi
     override fun getItemCount(): Int = data.size
 
     override fun onBindViewHolder(holder: CatFactListItemViewHolder, position: Int) {
-//        (holder.itemView as CatFactListItemView).viewModel
+        val view = holder.itemView as CatFactListItemView
+        val catFact = data[position]
+
+        view.catFact = catFact
+        view.setOnClickListener { onItemClickedListener?.invoke(catFact) }
+    }
+
+    fun updateData(catfacts: List<CatFact>) {
+        data.clear()
+        data.addAll(catfacts)
+        notifyDataSetChanged()
     }
 }
-
-class CatFactListItemViewHolder(context: Context) : RecyclerView.ViewHolder(CatFactListItemView(context))
-
-class CatFactListItemView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr)

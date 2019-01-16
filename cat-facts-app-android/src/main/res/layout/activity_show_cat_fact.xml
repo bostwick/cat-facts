@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="catFact"
+            type="com.danielbostwick.catfacts.core.model.CatFact" />
+
+        <variable
+            name="author"
+            type="com.danielbostwick.catfacts.core.model.CatFactAccount" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel" />
+
+            <TextView
+                android:id="@+id/cat_fact_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="@{catFact.content}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toTopOf="@id/cat_fact_created_date"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Cat Fact Content Goes Here Cat Fact Content Goes Here Cat Fact Content Goes Here" />
+
+            <TextView
+                android:id="@+id/cat_fact_author_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{author.name}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:visibility="@{author != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBaseline_toBaselineOf="@id/cat_fact_created_date"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/dot_separator"
+                tools:text="Garfield The Cat" />
+
+            <TextView
+                android:id="@+id/dot_separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  ·  "
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:visibility="@{author != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBaseline_toBaselineOf="@id/cat_fact_created_date"
+                app:layout_constraintLeft_toRightOf="@id/cat_fact_author_name"
+                app:layout_constraintRight_toLeftOf="@id/cat_fact_created_date" />
+
+            <TextView
+                android:id="@+id/cat_fact_created_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{catFact.createdAt.toString()}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/dot_separator"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cat_fact_content"
+                tools:text="January 17, 2019" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

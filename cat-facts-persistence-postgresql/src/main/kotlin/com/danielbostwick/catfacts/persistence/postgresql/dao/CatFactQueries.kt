@@ -20,6 +20,6 @@ object CatFactQueries {
         "SELECT * FROM ${CatFactsSchema.TABLE_NAME}"
 
     const val FIND_BY_ID =
-        "SELECT * FROM ${CatFactsSchema.TABLE_NAME}" +
+        "SELECT * FROM ${CatFactsSchema.TABLE_NAME} " +
             "WHERE ${CatFactsSchema.COLUMN_ID} = :${CatFactsSchema.QUERY_PARAM_ID}"
 }

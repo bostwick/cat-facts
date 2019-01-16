@@ -20,22 +20,29 @@ sourceSets {
     test.java.srcDirs += 'src/test/kotlin/'
 }
 
-jar {
-    manifest {
-        attributes "Implementation-Title": "Cat Facts API Client"
-        attributes "Implementation-Version": app.version_name
-    }
-
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-}
+//jar {
+//    manifest {
+//        attributes "Implementation-Title": "Cat Facts API Client"
+//        attributes "Implementation-Version": app.version_name
+//    }
+//
+//    exclude 'META-INF/LICENSE'
+//    exclude 'META-INF/NOTICE'
+//    exclude 'META-INF/MANIFEST.MF'
+//    exclude 'META-INF/*.SF'
+//    exclude 'META-INF/*.DSA'
+//    exclude 'META-INF/*.RSA'
+//
+//    from {
+//        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+//}
 
 dependencies {
     implementation project(":cat-facts-core")
 
-    implementation dep.kotlin_stdlib_jdk // .KOTLIN_STDLIB_JDK7
-    implementation dep.kotlin_reflect
+    implementation dep.kotlin_stdlib_jdk
+//    implementation dep.kotlin_reflect
 
     compile dep.rx_java
 
